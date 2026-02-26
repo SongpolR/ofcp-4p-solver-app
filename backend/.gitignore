@@ -1,0 +1,36 @@
+# Python / FastAPI
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtualenvs
+.venv/
+venv/
+ENV/
+env/
+
+# Env files / secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Logs
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Test / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/

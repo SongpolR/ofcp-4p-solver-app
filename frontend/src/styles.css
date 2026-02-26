@@ -1,0 +1,284 @@
+:root {
+  font-family: ui-sans-serif, system-ui, Arial;
+}
+
+/* Whole-page scrolling */
+html,
+body {
+  height: auto;
+  overflow: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 16px auto;
+  padding: 0 14px;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.panel {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+  background: white;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+h2 {
+  margin: 8px 0 8px;
+  font-size: 16px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  font-size: 12px;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+button {
+  padding: 10px 12px;
+  border: 1px solid #111827;
+  background: #111827;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+button.secondary {
+  background: #fff;
+  color: #111827;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Running / Countdown */
+.running {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.countdown {
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  color: #111827;
+}
+
+/* -------------------- Card visuals (shared) -------------------- */
+.card {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 6px 6px;
+  text-align: center;
+  user-select: none;
+  font-weight: 800;
+  background: #ffffff;
+  transition:
+    transform 0.05s ease,
+    box-shadow 0.1s ease,
+    border-color 0.1s ease;
+  line-height: 1;
+  color: #111827;
+}
+
+.card-rank {
+  font-size: 16px;
+  letter-spacing: 0.2px;
+}
+
+.card-suit {
+  font-size: 18px;
+  margin-top: 3px;
+}
+
+.card-meta {
+  font-size: 10px;
+  opacity: 0.7;
+  margin-top: 3px;
+}
+
+.suit-red {
+  color: #dc2626;
+}
+.suit-black {
+  color: #111827;
+}
+
+.card.selected {
+  background: #111827;
+  border-color: #111827;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+.card.selected .card-rank,
+.card.selected .card-meta {
+  color: #ffffff;
+}
+.card.selected .suit-black {
+  color: #ffffff;
+}
+.card.selected .suit-red {
+  color: #f87171;
+}
+
+/* -------------------- Picker layout: 2 ranks per row (desktop/tablet) -------------------- */
+.pair-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pair-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.rank-block {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.rank-label {
+  font-weight: 900;
+  color: #f9fafb;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  background: #111827;
+  border-radius: 10px;
+  padding: 10px 0;
+}
+
+/* default: 4 suit cards in a row */
+.rank-row-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(44px, 1fr));
+  gap: 10px;
+}
+
+.card-tile {
+  width: 100%;
+  cursor: pointer;
+}
+.card-tile:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-color: #9ca3af;
+}
+
+/* Result piles */
+.piles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.pile {
+  border: 1px dashed #d1d5db;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.result-cards {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.card-mini {
+  width: 54px;
+  padding: 6px 6px;
+}
+
+/* -------------------- Desktop layout (two panels side-by-side) -------------------- */
+@media (min-width: 900px) {
+  .row {
+    flex-wrap: nowrap;
+  }
+}
+
+/* -------------------- Mobile responsive (<= 900px) -------------------- */
+@media (max-width: 900px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .pair-row {
+    grid-template-columns: 1fr;
+  }
+
+  .rank-block {
+    grid-template-columns: 36px 1fr;
+    gap: 8px;
+  }
+
+  /* Keep 4 cards in one row on mobile */
+  .rank-row-cards {
+    grid-template-columns: repeat(4, minmax(42px, 1fr));
+    gap: 8px;
+  }
+
+  .card {
+    padding: 6px 4px;
+    border-radius: 10px;
+  }
+  .card-rank {
+    font-size: 15px;
+  }
+  .card-suit {
+    font-size: 17px;
+  }
+}
+
+/* -------------------- Small phones (<= 420px): still 4 per row, tighter -------------------- */
+@media (max-width: 420px) {
+  h1 {
+    font-size: 20px;
+  }
+  .container {
+    padding: 0 10px;
+  }
+
+  .rank-row-cards {
+    grid-template-columns: repeat(4, minmax(34px, 1fr));
+    gap: 6px;
+  }
+
+  .rank-label {
+    padding: 8px 0;
+  }
+
+  .card {
+    padding: 5px 3px;
+  }
+  .card-rank {
+    font-size: 14px;
+  }
+  .card-suit {
+    font-size: 16px;
+  }
+  .card-meta {
+    font-size: 9px;
+  }
+}
